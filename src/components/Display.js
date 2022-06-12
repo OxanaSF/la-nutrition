@@ -52,15 +52,18 @@ const Display = () => {
         <button onClick={getInfo}>Get API information</button>
       </div>
       <div>
-        <h3>Calories in this recipe: {calories}</h3>
-        <h3>
-          Health Characteristics:
+        <h2>Calories in this recipe: {calories}</h2>
+        <div>
+        <h2>Health Characteristics:</h2>
+          
+          <ListStyled>
           {healthLabels.map((label, index) => (
             <div key={index}>{label}</div>
           ))}
-        </h3>
+          </ListStyled>
+        </div>
+        
 
-        {/* <h2>{nutrients["CA"]["label"]}</h2> */}
 
         <h2>
         Nutrients:

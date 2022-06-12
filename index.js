@@ -39,4 +39,36 @@ app.get('/display', (req,res) => {
     });
 })
 
+
+
+app.get('/recipes', (req,res) => {
+  const recipeTag = req.query.tags
+  const randomRecipesNum = req.query.number
+
+  const options = {
+    method: 'GET',
+    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
+    params: { tags: recipeTag, number: randomRecipesNum },
+    headers: {
+      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+      'X-RapidAPI-Host':
+        'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+    },
+  };
+
+  axios
+    .request(options)
+    .then((response) => {
+      res.json(response.data);
+      console.log('RANDOME RECIPES: ', response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+})
+
+
+
+
+
 app.listen(8000, () => console.log(`Server is running on port ${PORT}`))

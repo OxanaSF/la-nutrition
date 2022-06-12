@@ -1,9 +1,9 @@
-import NewsFeed from "./components/Display";
+import Pages from './pages/Pages'
 
 const App = () => {
   return (
     <div>
-       <NewsFeed />
+       <Pages />
     </div>
   );
 }
