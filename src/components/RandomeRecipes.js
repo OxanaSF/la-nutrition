@@ -17,6 +17,7 @@ const RandomeRecipes = () => {
 
   const getRandomRecipes = () => {
     const check = localStorage.getItem('randomRecipes');
+    // console.log('CHECK: ', check)
     if (check) {
       setRandomRecipes(JSON.parse(check));
     } else {
@@ -32,9 +33,10 @@ const RandomeRecipes = () => {
         .request(options)
         .then((response) => {
           localStorage.setItem(
-            'randomeRecipes',
+            'randomRecipes',
             JSON.stringify(response.data.recipes)
           );
+          
           setRandomRecipes(response.data.recipes);
 
           console.log('RANDOME RECIPES: ', response.data);
@@ -60,7 +62,7 @@ const RandomeRecipes = () => {
         >
           {randomRecipes.map((recipe) => {
             return (
-              <SplideSlide key={recipe.id}>
+              <SplideSlide key={recipe.id} className='slide-slide'>
                 <CardStyled>
                   <img src={recipe.image} alt={recipe.title} />
                   <h3>{recipe.title}</h3>
@@ -90,6 +92,10 @@ const RandomeRecipes = () => {
 
 const RandomRecipesStyled = styled.section`
   margin: 4rem 0rem;
+
+  .slide-slide {
+    cursor: pointer;
+  }
 `;
 const CardStyled = styled.div`
   height: 35rem;
