@@ -14,6 +14,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/display', (req,res) => {
+  
 
   const ingridient = req.query.ingr
 
