@@ -16,7 +16,7 @@ const Nav = () => {
 
       <div className="links-on-the-right">
         <NavLink to="/generate" className="generate">
-          Generate Menu Under 1200 cal
+          Generate Menu Under 1500 cal
         </NavLink>
       </div>
     </NavStyled>

@@ -48,8 +48,10 @@ const Cuisine = () => {
       {cuisine.map((dish) => {
         return (
           <CuisineCardStyled key={dish.id}>
+            <Link to={/recipe/ + dish.id}>
             <img src={dish.image} alt={dish.title} />
             <h4>{dish.title}</h4>
+            </Link>
           </CuisineCardStyled>
         );
       })}
@@ -68,7 +70,8 @@ const CuisineCardStyled = styled.div`
   margin-top: 4rem;
   img {
     width: 100%;
-    border-radius: 1.5rem;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
   }
 
   a {
@@ -76,8 +79,20 @@ const CuisineCardStyled = styled.div`
   }
 
   h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 1rem;
+    color: black;
+    border: 1px solid gray;
+    height: 5rem;
+    border: 0.1rem solid #e6e6e6;
+    border-top: none;
+    border-bottom-left-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+    letter-spacing: 1px;
+    transform: translateY(-10.5%);
   }
 `;
 

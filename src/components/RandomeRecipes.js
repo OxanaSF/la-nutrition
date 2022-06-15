@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const recipeTag = 'vegetarian,dessert';
 
@@ -68,7 +69,8 @@ const RandomeRecipes = () => {
           {randomRecipes.map((recipe) => {
             return (
               <SplideSlide key={recipe.id} className="slide-slide">
-                <CardStyled>
+                <div>
+                  <LinkStyled to={/recipe/ + recipe.id}>
                   <img src={recipe.image} alt={recipe.title} />
                   <h3>{recipe.title}</h3>
                   <div className="description">
@@ -83,7 +85,8 @@ const RandomeRecipes = () => {
                     </p>
                     <p>Vegan: {recipe.vegan === false ? 'NO' : 'YES'}</p>
                   </div>
-                </CardStyled>
+                  </LinkStyled>
+                </div>
               </SplideSlide>
             );
           })}
@@ -111,7 +114,7 @@ const RandomRecipesStyled = styled.section`
     letter-spacing: 1px;
   }
 `;
-const CardStyled = styled.div`
+const LinkStyled = styled(Link)`
   height: 35rem;
   width: 21rem;
   border: 1px solid #e6e6e6;
@@ -128,10 +131,12 @@ const CardStyled = styled.div`
   h3 {
     font-weight: 400;
     text-align: left;
+    color: black;
   }
 
   p {
     font-weight: 300;
+    color: black;
   }
 
   img {
@@ -139,6 +144,7 @@ const CardStyled = styled.div`
     object-fit: cover;
     width: 100%;
   }
+
 `;
 
 export default RandomeRecipes;
