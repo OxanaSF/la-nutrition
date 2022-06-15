@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const bgImg = `${process.env.PUBLIC_URL}/images/bg-food-img.jpg`;
 
@@ -6,9 +7,14 @@ const Header = () => {
   return (
     <HeaderStyled>
       <div className="header-title"></div>
-      <GradientStyled>
-        <h1>La Nutrition</h1>
-      </GradientStyled>
+
+      
+        <NavLink to="/">
+        <GradientStyled>
+          <h1>La Nutrition</h1>
+          </GradientStyled>
+        </NavLink>
+      
     </HeaderStyled>
   );
 };
@@ -42,12 +48,11 @@ const GradientStyled = styled.div`
     padding: 0 5%;
   }
 
-
   @media only screen and (max-width: 600px) {
-  h1 {
-    font-size: 2.6rem;
+    h1 {
+      font-size: 2.6rem;
+    }
   }
-}
 `;
 
 export default Header;

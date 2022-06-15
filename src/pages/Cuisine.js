@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import { cusines } from '../use-data';
+import { capitalize } from '../use-data';
 
 const Cuisine = () => {
+
+
   const [cuisine, setCuisine] = useState([]);
   let params = useParams();
 
@@ -43,9 +46,15 @@ const Cuisine = () => {
     console.log(params.type);
   }, [params.type]);
 
+
+ 
+
   return (
+    <CuisinePageStyled>
+      <h1> {capitalize(params.type)} cuisine recipes:</h1>
     <DisplayCuisineStyled>
       {cuisine.map((dish) => {
+        
         return (
           <CuisineCardStyled key={dish.id}>
             <Link to={/recipe/ + dish.id}>
@@ -56,11 +65,20 @@ const Cuisine = () => {
         );
       })}
     </DisplayCuisineStyled>
+    </CuisinePageStyled>
   );
 };
 
-const DisplayCuisineStyled = styled.section`
-margin: 4rem 10%;
+const CuisinePageStyled = styled.section`
+margin-top: 4rem;
+color: #bde6a4;
+h1 {
+  font-size: 2rem;
+}
+`
+
+const DisplayCuisineStyled = styled.div`
+margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
@@ -93,6 +111,7 @@ const CuisineCardStyled = styled.div`
     border-bottom-right-radius: 1.2rem;
     letter-spacing: 1px;
     transform: translateY(-10.5%);
+    font-weight: 600;
   }
 `;
 
