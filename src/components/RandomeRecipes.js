@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const recipeTag = 'vegetarian,dessert';
 
@@ -36,7 +37,7 @@ const RandomeRecipes = () => {
             'randomRecipes',
             JSON.stringify(response.data.recipes)
           );
-          
+
           setRandomRecipes(response.data.recipes);
 
           console.log('RANDOME RECIPES: ', response.data);
@@ -50,7 +51,11 @@ const RandomeRecipes = () => {
   return (
     <div>
       <RandomRecipesStyled>
-        <h1>Randome Recipes:</h1>
+        <div className="arrows">
+          <FaArrowLeft></FaArrowLeft>
+          <h5>drag to see exaples</h5>
+          <FaArrowRight></FaArrowRight>
+        </div>
 
         <Splide
           options={{
@@ -62,7 +67,7 @@ const RandomeRecipes = () => {
         >
           {randomRecipes.map((recipe) => {
             return (
-              <SplideSlide key={recipe.id} className='slide-slide'>
+              <SplideSlide key={recipe.id} className="slide-slide">
                 <CardStyled>
                   <img src={recipe.image} alt={recipe.title} />
                   <h3>{recipe.title}</h3>
@@ -76,9 +81,7 @@ const RandomeRecipes = () => {
                     <p>
                       Vegetarian: {recipe.vegetarian === false ? 'NO' : 'YES'}
                     </p>
-                    <p>
-                    Vegan: {recipe.vegan === false ? 'NO' : 'YES'}
-                    </p>
+                    <p>Vegan: {recipe.vegan === false ? 'NO' : 'YES'}</p>
                   </div>
                 </CardStyled>
               </SplideSlide>
@@ -91,16 +94,28 @@ const RandomeRecipes = () => {
 };
 
 const RandomRecipesStyled = styled.section`
-  margin: 4rem 0rem;
+  margin: 4rem 10%;
 
   .slide-slide {
     cursor: pointer;
+  }
+
+  .arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  h5 {
+    letter-spacing: 1px;
   }
 `;
 const CardStyled = styled.div`
   height: 35rem;
   width: 21rem;
   border: 1px solid #e6e6e6;
+  border: 3px solid #62f702;
   overflow: hidden;
   margin: 1rem;
   border-radius: 0.2rem;

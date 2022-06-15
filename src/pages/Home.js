@@ -1,13 +1,12 @@
-import Display from '../components/Display'
-import RandomeRecipes from '../components/RandomeRecipes'
+
+import RandomeRecipes from '../components/RandomeRecipes';
 
 const Home = () => {
   return (
-      <>
-    <RandomeRecipes />
-    {/* <Display /> */}
+    <>
+      <RandomeRecipes />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
