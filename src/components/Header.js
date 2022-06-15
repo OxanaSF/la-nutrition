@@ -37,6 +37,17 @@ const GradientStyled = styled.div`
   font-size: 2.2rem;
   font-size: 700;
   letter-spacing: 0.1rem;
+
+  h1 {
+    padding: 0 5%;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+}
 `;
 
 export default Header;

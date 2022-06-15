@@ -10,12 +10,13 @@ const Search = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         navigate('/searched/' + input)
+        setInput('')
     }
 
 
   return (
     <FormStyled onSubmit={onSubmitHandler}>
-        <FaSearch className='search-icon'></FaSearch>
+        <FaSearch className='search-icon' />
         <input 
             onChange={(e) => setInput(e.target.value)}
             type="text"
@@ -31,6 +32,17 @@ const FormStyled = styled.form`
     position: relative;
     width: 65%;
 
+  .search-icon {
+    position: absolute;
+    top: 6.1rem;
+    left: 1.6rem;
+    font-size: 2rem;
+    color: #999999;
+    margin-right: 2rem;
+    font-weight: 100;
+    
+  }
+
   input {
     border: 1px solid #999999;
     padding: 1rem 3rem;
@@ -38,6 +50,10 @@ const FormStyled = styled.form`
     outline: none;
     font-size: 1.5rem;
     width: 100%;
+    text-align: center;
+    color: #999999;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 `;
 

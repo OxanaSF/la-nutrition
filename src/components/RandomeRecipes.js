@@ -115,7 +115,7 @@ const CardStyled = styled.div`
   height: 35rem;
   width: 21rem;
   border: 1px solid #e6e6e6;
-  border: 3px solid #62f702;
+  /* border: 2px solid #bde6a4; */
   overflow: hidden;
   margin: 1rem;
   border-radius: 0.2rem;

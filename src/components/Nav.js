@@ -16,7 +16,7 @@ const Nav = () => {
 
       <div className="links-on-the-right">
         <NavLink to="/generate" className="generate">
-          Generate Week Menu
+          Generate Menu Under 1200 cal
         </NavLink>
       </div>
     </NavStyled>
@@ -40,6 +40,17 @@ const NavStyled = styled.nav`
     padding: 1rem;
     border-radius: 0.5rem;
   }
+
+
+  @media only screen and (max-width: 600px) {
+    /* flex-direction: column; */
+    gap: 2rem;
+    .generate  {
+      font-size: 0.5rem;
+      padding: 0.8rem;
+  }
+}
+
 `;
 
 export default Nav;

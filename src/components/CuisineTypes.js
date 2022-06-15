@@ -28,12 +28,6 @@ const CategoryDisplayStyled = styled.div`
 width: 80%;
 margin: 1rem auto;
   display: grid;
-  /* justify-content: center;
-  align-content: center;
-  grid-auto-flow: column;
-  gap: 0.5rem;
-  grid-template-rows: 1fr 1fr; */
-
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 `;
