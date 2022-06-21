@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import GlobalStyles from './components/GlobalStyles';
 import Header from './components/Header';

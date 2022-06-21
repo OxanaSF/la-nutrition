@@ -1,62 +1,74 @@
-import {useState, useEffect} from 'react'
-import { useParams } from 'react-router';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import Loader from '../components/Loader';
 
-const Searched = () => {
+const Searched = (props) => {
+  const [searchedQuery, setSearchedQuery] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  let params = useParams();
 
-    const [searchedQuery, setSearchedQuery] = useState([])
-    let params = useParams()
+  const getSearched = (queryName) => {
+    const axios = require('axios');
 
-    const getSearched = (queryName) => {
-        const axios = require('axios');
-    
-        const options = {
-          method: 'GET',
-          url: `http://localhost:8000/searched`,
-          params: {
-            query: queryName,
-            number: 200,
-          },
-          headers: {
-            'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-            'X-RapidAPI-Host':
-              'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-          },
-        };
-        axios
-          .request(options)
-          .then((response) => {
-            console.log('LOOK HERE : ', response.data.results);
-            setSearchedQuery(response.data.results);
-    
-            console.log('QUERY: ', response.data);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+    const options = {
+      method: 'GET',
+      url: `http://localhost:8000/searched`,
+      params: {
+        query: queryName,
+        number: 200,
+      },
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+        'X-RapidAPI-Host':
+          'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+      },
+    };
+    axios
+      .request(options)
+      .then((response) => {
+        setSearchedQuery(response.data.results);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-useEffect(() => {
-getSearched(params.search)
-}, [params.search])
+  useEffect(() => {
+    getSearched(params.search);
+  }, [params.search]);
 
   return (
-    <DisplaySearchedStyled >
-        {searchedQuery.map((query) => {
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <DisplaySearchedStyled
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {searchedQuery.map((query) => {
             return (
-                <SearchedCardStyled key={query.id}>
-                    <img src={query.image} alt={query.title} />
-                    <h4>{query.title}</h4>
-                </SearchedCardStyled>
-            )
-        })}
-    </DisplaySearchedStyled>
-  )
-}
+              <SearchedCardStyled key={query.id}>
+                <Link to={/recipe/ + query.id}>
+                  <img src={query.image} alt={query.title} />
+                  <h4>{query.title}</h4>
+                </Link>
+              </SearchedCardStyled>
+            );
+          })}
+        </DisplaySearchedStyled>
+      )}
+    </>
+  );
+};
 
-
-const DisplaySearchedStyled = styled.section`
-margin: 4rem 10%;
+const DisplaySearchedStyled = styled(motion.section)`
+  margin: 4rem 10%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
@@ -79,5 +91,4 @@ const SearchedCardStyled = styled.div`
   }
 `;
 
-
-export default Searched
+export default Searched;

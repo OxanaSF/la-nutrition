@@ -6,6 +6,7 @@ import '@splidejs/splide/dist/css/splide.min.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+
 const recipeTag = 'vegetarian,dessert';
 
 const RandomeRecipes = () => {

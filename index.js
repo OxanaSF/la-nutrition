@@ -21,10 +21,27 @@ app.get('/', (req,res) => {
 })
 
 app.get('/display', (req,res) => {
-  
 
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  
+  console.log('REQ REQ REQ: ', req.query.ingr)
   const ingridient = req.query.ingr
 
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+  console.log('**********************')
+
+   
   const options = {
     method: "GET",
     url: "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data",
@@ -40,7 +57,7 @@ app.get('/display', (req,res) => {
     .request(options)
     .then((response) => {
       res.json(response.data);
-      // console.log(response.data)
+      console.log('DATA DATA DATA: ', response.data)
     })
     .catch((error) => {
       console.error(error);
@@ -143,24 +160,24 @@ app.get('/searched', (req,res) => {
 
 
 app.get('/recipe', (req,res) => {
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
   
-  console.log('REQ REQ REQ: ', req.query.id)
+  // console.log('REQ REQ REQ: ', req.query.id)
   const recipeId = req.query.id
 
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
-  console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
+  // console.log('**********************')
 
 
   const options = {
@@ -178,7 +195,7 @@ app.get('/recipe', (req,res) => {
     .request(options)
     .then((response) => {
       res.json(response.data);
-      console.log('QUERY!!!! ID: ', response.data);
+      // console.log('QUERY!!!! ID: ', response.data);
     })
     .catch((error) => {
       console.error(error);

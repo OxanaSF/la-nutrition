@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
-import { cusines } from '../use-data';
-import { capitalize } from '../use-data';
+import { capitalize } from '../use-function';
+import Loader from '../components/Loader';
 
 const Cuisine = () => {
-
-
   const [cuisine, setCuisine] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   let params = useParams();
 
   const getCuisine = (cuisineName) => {
@@ -30,11 +29,8 @@ const Cuisine = () => {
     axios
       .request(options)
       .then((response) => {
-        console.log('LOOK HERE : ', response.data.results);
         setCuisine(response.data.results);
-
-        console.log('CUISINE, response: ', response);
-        console.log('CUISINE: ', response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -43,42 +39,47 @@ const Cuisine = () => {
 
   useEffect(() => {
     getCuisine(params.type);
-    console.log(params.type);
   }, [params.type]);
 
-
- 
-
   return (
-    <CuisinePageStyled>
+    <CuisinePageStyled
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1> {capitalize(params.type)} cuisine recipes:</h1>
-    <DisplayCuisineStyled>
-      {cuisine.map((dish) => {
-        
-        return (
-          <CuisineCardStyled key={dish.id}>
-            <Link to={/recipe/ + dish.id}>
-            <img src={dish.image} alt={dish.title} />
-            <h4>{dish.title}</h4>
-            </Link>
-          </CuisineCardStyled>
-        );
-      })}
-    </DisplayCuisineStyled>
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <DisplayCuisineStyled>
+          {cuisine.map((dish) => {
+            return (
+              <CuisineCardStyled key={dish.id}>
+                <Link to={/recipe/ + dish.id}>
+                  <img src={dish.image} alt={dish.title} />
+                  <h4>{dish.title}</h4>
+                </Link>
+              </CuisineCardStyled>
+            );
+          })}
+        </DisplayCuisineStyled>
+      )}
     </CuisinePageStyled>
   );
 };
 
-const CuisinePageStyled = styled.section`
-margin-top: 4rem;
-color: #bde6a4;
-h1 {
-  font-size: 2rem;
-}
-`
+const CuisinePageStyled = styled(motion.section)`
+  margin-top: 4rem;
+  color: #bde6a4;
+  h1 {
+    font-size: 2rem;
+  }
+`;
 
 const DisplayCuisineStyled = styled.div`
-margin: 0 10%;
+  margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;

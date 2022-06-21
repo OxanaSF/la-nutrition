@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const initialRecipe = `2 overripe large bananas apple pork`;
 
-const DisplayAnalys = () => {
+const DisplayAnalysis = () => {
   const [recipeText, setRecipeText] = useState(initialRecipe);
   const [calories, setCalories] = useState(0);
   const [healthLabels, setHealthLabels] = useState(["no labels now"]);
@@ -87,7 +87,7 @@ const DisplayAnalys = () => {
   );
 };
 
-export default DisplayAnalys;
+export default DisplayAnalysis;
 
 
 const ListStyled = styled.ul`
