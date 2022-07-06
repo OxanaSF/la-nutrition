@@ -36,14 +36,14 @@ const CategoryDisplayStyled = styled.div`
   margin: 1rem auto;
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 
   .default {
     button {
       cursor: pointer;
       padding: 0.2rem;
       height: 3rem;
-      width: 9rem;
+      width: 10rem;
       background-color: white;
       letter-spacing: 0.1rem;
 

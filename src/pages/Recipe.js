@@ -7,6 +7,7 @@ const Recipe = () => {
   //States related to getRecipeInfo
   const [recipeInfo, setRecipeInfo] = useState([]);
   const [ingridients, setIngridients] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   //Stets related to getIngridientsAnalysis
   const [calories, setCalories] = useState(0);
@@ -86,13 +87,15 @@ const Recipe = () => {
       .then((response) => {
         console.log('NUTRIENTS!!!!: ', response.data);
         setCalories(response.data['calories']);
+        setHealthLabels(response.data);
         setHealthLabels(response.data['healthLabels']);
         setNutrients(response.data['totalNutrients']);
-        console.log('NUTRIENTS TOTAL: ', response.data['totalNutrients']);
-        console.log(
-          'NUTRIENTS SUGAR: ',
-          response.data['totalNutrients']['SUGAR'].label
-        );
+        // console.log('NUTRIENTS TOTAL: ', response.data['totalNutrients']);
+        // console.log(
+        //   'NUTRIENTS SUGAR: ',
+        //   response.data['totalNutrients']['SUGAR'].label
+        // );
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -108,12 +111,14 @@ const Recipe = () => {
   }, [nutritionsBtn]);
 
   return (
+    
     <motion.div
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      
       <RecipeHeaderStyled>
         {nutritionsBtn && <h3>Nutrients Analysis of This Dish:</h3>}
         {!nutritionsBtn && <h3>Back to Recipe:</h3>}
@@ -124,6 +129,7 @@ const Recipe = () => {
             alt="food details icon"
           />
         </ButtonStyled>
+        
       </RecipeHeaderStyled>
 
       {nutritionsBtn && (
@@ -153,6 +159,7 @@ const Recipe = () => {
             </div>
             <div className="directions">
               <h3>Directions</h3>
+              {! recipeInfo.instructions && <p style={{textAlign: 'center'}}>Recipe Instructions are Not Available at this time.</p>}
               <p>{recipeInfo.instructions}</p>
               <img src={recipeInfo.image} alt={recipeInfo.title} />
             </div>
