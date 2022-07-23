@@ -14,7 +14,7 @@ const Searched = (props) => {
 
     const options = {
       method: 'GET',
-      url: `http://localhost:8000/searched`,
+      url: `https://gentle-shore-78455.herokuapp.com/searched`,
       params: {
         query: queryName,
         number: 200,

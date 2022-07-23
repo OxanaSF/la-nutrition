@@ -15,7 +15,7 @@ const Cuisine = () => {
 
     const options = {
       method: 'GET',
-      url: `http://localhost:8000/cuisine`,
+      url: `https://gentle-shore-78455.herokuapp.com/cuisine`,
       params: {
         cuisine: cuisineName,
         number: 200,

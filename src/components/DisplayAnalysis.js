@@ -24,7 +24,7 @@ const DisplayAnalysis = () => {
 
     const options = {
       method: "GET",
-      url: "http://localhost:8000/display",
+      url: "https://gentle-shore-78455.herokuapp.com/display",
       params: { ingr: recipeText },
     };
 

@@ -28,7 +28,7 @@ const RandomeRecipes = () => {
 
       const options = {
         method: 'GET',
-        url: 'http://localhost:8000/recipes',
+        url: 'https://gentle-shore-78455.herokuapp.com/recipes',
         params: { tags: recipeTag, number: randomRecipesNum },
       };
 
