@@ -29,7 +29,7 @@ const Recipe = () => {
     const axios = require('axios');
     const options = {
       method: 'GET',
-      url: `http://localhost:8000/recipe`,
+      url: `https://gentle-shore-78455.herokuapp.com/recipe`,
 
       headers: {
         'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
