@@ -37,6 +37,10 @@ const CategoryDisplayStyled = styled.div`
   display: grid;
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
 
   .default {
     button {
@@ -81,7 +85,7 @@ const NavLinkStyled = styled(NavLink).attrs({
   className: ({ isActive }) => (isActive ? 'selected' : undefined),
 })`
 
-  /* button {
+   button {
     cursor: pointer;
     padding: 0.2rem;
     height: 3rem;
@@ -95,13 +99,13 @@ const NavLinkStyled = styled(NavLink).attrs({
     border: 1.4px solid #e6e6e6;
     border-radius: 0.2rem; */
 
-    /* &:hover,
+    &:hover,
     &:active{
       background-color: #bde6a4;
       transition: .5s all;
       border: none;
       font-weight: 700;
-    } */
+    } 
   }
 
    

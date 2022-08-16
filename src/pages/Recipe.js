@@ -111,14 +111,12 @@ const Recipe = () => {
   }, [nutritionsBtn]);
 
   return (
-    
     <motion.div
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      
       <RecipeHeaderStyled>
         {nutritionsBtn && <h3>Nutrients Analysis of This Dish:</h3>}
         {!nutritionsBtn && <h3>Back to Recipe:</h3>}
@@ -129,7 +127,6 @@ const Recipe = () => {
             alt="food details icon"
           />
         </ButtonStyled>
-        
       </RecipeHeaderStyled>
 
       {nutritionsBtn && (
@@ -159,7 +156,11 @@ const Recipe = () => {
             </div>
             <div className="directions">
               <h3>Directions</h3>
-              {! recipeInfo.instructions && <p style={{textAlign: 'center'}}>Recipe Instructions are Not Available at this time.</p>}
+              {!recipeInfo.instructions && (
+                <p style={{ textAlign: 'center' }}>
+                  Recipe Instructions are Not Available at this time.
+                </p>
+              )}
               <p>{recipeInfo.instructions}</p>
               <img src={recipeInfo.image} alt={recipeInfo.title} />
             </div>
